@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D56087E6-3523-4DA0-88FF-F8489DF7F7BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TallerBiblioteca.Infrastructure</RootNamespace>
+    <AssemblyName>TallerBiblioteca.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\JSON\ExtensionesJson.cs" />
+    <Compile Include="DAL\EntityFramework\BibliotecaDbContext.cs" />
+    <Compile Include="DAL\EntityFramework\Mapping\MappingEdicion.cs" />
+    <Compile Include="DAL\EntityFramework\Mapping\MappingEjemplar.cs" />
+    <Compile Include="DAL\EntityFramework\Mapping\MappingNotificacionVencimientoPrestamos.cs" />
+    <Compile Include="DAL\EntityFramework\Mapping\MappingPrestamo.cs" />
+    <Compile Include="DAL\EntityFramework\Mapping\MappingUsuario.cs" />
+    <Compile Include="DAL\EntityFramework\Repositorio.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioEdiciones.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioEjemplar.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioNotificacionVencimientoPrestamo.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioPrestamo.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioUsuarios.cs" />
+    <Compile Include="DAL\EntityFramework\UnitOfWork.cs" />
+    <Compile Include="DAL\EntityFramework\UnitOfWorkFactory.cs" />
+    <Compile Include="DependecyInjection.cs" />
+    <Compile Include="LibrosRemotos\OpenLibrary\ServicioEdicionRemota.cs" />
+    <Compile Include="Notificacion\NotificadorMail.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad\HashingManager.cs" />
+    <Compile Include="Tareas\Quartz\TareaEnviarAvisoADosDiasVencimiento.cs" />
+    <Compile Include="Tiempo\DateTimeProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TallerBiblioteca.Aplication\TallerBiblioteca.Aplication.csproj">
+      <Project>{E05CCC27-ED7C-4C60-BBCC-62137F90368B}</Project>
+      <Name>TallerBiblioteca.Aplication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TallerBiblioteca.Domain\TallerBiblioteca.Domain.csproj">
+      <Project>{EB08FC1E-0F0E-44B0-BE19-7314AD077CCF}</Project>
+      <Name>TallerBiblioteca.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="MailKit">
+      <Version>3.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Http">
+      <Version>7.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Quartz">
+      <Version>3.6.3</Version>
+    </PackageReference>
+    <PackageReference Include="Quartz.Extensions.DependencyInjection">
+      <Version>3.6.3</Version>
+    </PackageReference>
+    <PackageReference Include="Quartz.Extensions.Hosting">
+      <Version>3.6.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
